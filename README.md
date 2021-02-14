@@ -26,14 +26,21 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 
 ```
   Client 
+  {
+    has_many :rentals 
+    has_many :vhs, through: rentals
+  }
     |
     ^
-  Rental                  
+  Rental 
+  {
+    belongs_to :client, :vhs
+    }             
     V
     |
     |
-  Vhs >---- Movie ----< MovieGenre >---- Genre
-```
+  Vhs >---- Movie ----< MovieGenre  >---- Genre 
+  
 
 ![Domain model](erd.png)
 
