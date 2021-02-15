@@ -11,7 +11,24 @@ class Client < ActiveRecord::Base
         else
             puts "Please pick an available Vhs"
         end
-        binding.pry
     end
+    # returns a list of top 5 most active clients (i.e. those who had the most non-current / returned rentals)
+
+    def past_rentals 
+        self.rentals.select{|v| v.current == false}
+        # binding.pry
+    end 
+
+    def self.most_active
+        Client.all.sort_by{|client| client.num_past_rentals.count}.reverse.slice(0,5)
+    end 
+
+    def self.non_grata 
+        Rental.past_due_date.map{|r| r.client}.uniq
+    end
+    
+
+
+
 
 end
