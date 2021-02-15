@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_211817) do
+ActiveRecord::Schema.define(version: 2021_02_15_022109) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "home_address"
-    t.integer "rental_id"
-    t.integer "vhs_id"
   end
 
   create_table "genres", force: :cascade do |t|
