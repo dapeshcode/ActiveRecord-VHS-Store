@@ -12,7 +12,6 @@ class Rental < ActiveRecord::Base
     end
 
     def self.past_due_date
-        binding.pry
         self.select {|rental| rental.past_due_date?}
     end
 
