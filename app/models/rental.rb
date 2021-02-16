@@ -19,8 +19,3 @@ class Rental < ActiveRecord::Base
 end
 
 
-# Rental.past_due_date - 
-# returns a list of all the rentals - iterate over that list to return - if updated_at - created_at > 7days return that array
-# - all that are past due date, 
-# - currently rented 
-# - or rented in the past
