@@ -26,6 +26,37 @@ class Client < ActiveRecord::Base
     def self.non_grata 
         Rental.past_due_date.map{|r| r.client}.uniq
     end
+
+    def return_one(vhs) 
+        self.rentals.find{|rental| rental.vhs == vhs}.update(current: false)
+    end
+
+    def return_all
+        self.rentals.update(current: false)
+    end
+
+    def last_return
+        self.return_all 
+        self.destroy
+        
+    end
+
+    def rental_fees
+        self.rentals.count * 5.35
+    end
+
+    def late_fees
+        self.rentals.count{|rental| rental.past_due_date?} * 12 
+    end
+    
+    def total_fees
+        rental_fees + late_fees
+    end
+
+    def self.paid_most
+        Client.all.max_by{|client| client.total_fees}
+    end
+
     
 
 

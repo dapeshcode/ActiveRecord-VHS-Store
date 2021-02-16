@@ -8,7 +8,7 @@ class Rental < ActiveRecord::Base
     end
    
     def past_due_date?
-        self.updated_at < self.due_date
+        self.updated_at > self.due_date
     end
 
     def self.past_due_date
